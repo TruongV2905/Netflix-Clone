@@ -7,7 +7,6 @@ const api = axios.create({
 api.interceptors.request.use(
   function (config) {
     const apiKey = import.meta.env.VITE_API_KEY;
-    console.log(apiKey);
     config.headers.Authorization = `Bearer ${apiKey}
 `;
 

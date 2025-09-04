@@ -35,8 +35,7 @@ function Homepage() {
       console.error("Fetch failed:", error);
     }
   };
-  console.log(movies);
-
+  console.log(movies.upcoming);
   useEffect(() => {
     fetchData();
   }, []);

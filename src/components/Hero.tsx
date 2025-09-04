@@ -4,7 +4,6 @@ import { Button, Input } from "antd";
 import type { Movie } from "../model/type";
 
 function Hero({ data }: { data: Movie[] }) {
-  console.log(data);
   const slides = data.map((item) => (
     <img
       src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
@@ -19,6 +18,8 @@ function Hero({ data }: { data: Movie[] }) {
         autoplay
         showPagination={false}
         showNavigation={false}
+        slidesPerView={1}
+        slidesPerGroup={1}
         slides={slides}
       />
       <div className="absolute left-0 top-2/4 w-fit  z-4">
@@ -36,7 +37,7 @@ function Hero({ data }: { data: Movie[] }) {
             placeholder="Địa chỉ email"
             className="flex-1 h-[45px] bg-transparent border border-[rgba(128, 128, 128, 0.7)] text-xl px-4 text-white rounded-4xl"
           />
-          <button className="bg-red-600 h-[45px] text-white px-5 rounded-4xl font-semibold hover:bg-red-700">
+          <button className="bg-red-600 h-[45px] text-white px-5 rounded-4xl font-semibold cursor-pointer duration-300 hover:bg-red-700">
             Tham gia ngay
           </button>
         </div>

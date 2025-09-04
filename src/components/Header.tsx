@@ -1,4 +1,3 @@
-
 function Header() {
   return (
     <header className="flex items-center justify-between px-10 py-4 bg-[rgba(0,0,0,.65)] fixed top-0 left-0 w-full z-10">
@@ -19,7 +18,7 @@ function Header() {
           </g>
         </svg>
       </div>
-      <button className="bg-white h-[40px] text-black px-5 rounded-4xl cursor-pointer font-semibold hover:bg-white/60">
+      <button className="bg-white h-[40px] text-black px-5 rounded-4xl cursor-pointer font-semibold duration-300 hover:bg-white/60">
         <span className="font-bold">Đăng nhập</span>
       </button>
     </header>
