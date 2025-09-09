@@ -12,6 +12,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import type { Swiper as SwiperType } from "swiper";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type CarouselProps = SwiperProps & {
   slides: React.ReactNode[];
@@ -20,6 +22,8 @@ type CarouselProps = SwiperProps & {
   showPagination?: boolean;
   showScrollbar?: boolean;
   autoPlay?: boolean;
+  slidesPerGroup?: number;
+  slidesPerView?: number;
 };
 
 function Carousel({
@@ -32,19 +36,33 @@ function Carousel({
   loop = true,
   spaceBetween = 20,
   slidesPerView = 1,
+  slidesPerGroup = 1,
   breakpoints,
   ...swiperProps
 }: CarouselProps) {
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const remainder = slides.length % slidesPerView;
   const adjustedSlides =
     remainder === 0 ? slides : slides.slice(0, slides.length - remainder);
+
+  const handleSlideChange = (swiper: SwiperType) => {
+    setActiveIndex(swiper.realIndex);
+  };
+  console.log(activeIndex);
+
+  const hidePrev = activeIndex < slidesPerGroup;
+  const hideNext = activeIndex >= adjustedSlides.length - slidesPerView;
+
   return (
     <div className="relative w-full">
       <Swiper
         className={`w-full ${className}`}
         modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
+        onSlideChange={handleSlideChange}
+        slidesPerGroup={slidesPerGroup}
         pagination={showPagination ? { clickable: true } : false}
         scrollbar={showScrollbar ? { draggable: true } : false}
         autoplay={
@@ -56,7 +74,7 @@ function Carousel({
         breakpoints={breakpoints}
         {...swiperProps}
       >
-        {adjustedSlides?.map((slide, index) => (
+        {adjustedSlides.map((slide, index) => (
           <SwiperSlide key={index}>{slide}</SwiperSlide>
         ))}
       </Swiper>
@@ -64,18 +82,22 @@ function Carousel({
       {/* Custom Buttons */}
       {showNavigation && swiperInstance && (
         <>
-          <button
-            onClick={() => swiperInstance.slidePrev()}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 px-4 py-2 bg-gray-800 text-white rounded-lg"
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => swiperInstance.slideNext()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 px-4 py-2 bg-gray-800 text-white rounded-lg"
-          >
-            Next
-          </button>
+          {!hidePrev && (
+            <button
+              onClick={() => swiperInstance.slidePrev()}
+              className="absolute cursor-pointer -left-3 top-1/2 -translate-y-1/2 z-10 px-1 py-[30px] duration-500 bg-[rgba(128,128,128,0.4)] text-white rounded-lg"
+            >
+              <IoIosArrowBack />
+            </button>
+          )}
+          {!hideNext && (
+            <button
+              onClick={() => swiperInstance.slideNext()}
+              className="absolute cursor-pointer -right-3 top-1/2 -translate-y-1/2 z-10 px-1 py-[30px] duration-500 bg-[rgba(128,128,128,0.4)] text-white rounded-lg"
+            >
+              <IoIosArrowForward />
+            </button>
+          )}
         </>
       )}
     </div>

@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import Header from "../components/Header";
 import api from "../config/api";
 import Hero from "../components/Hero";
-import MovieCard from "../components/MovieCard";
-import type { Movie, MoviesData } from "../model/type";
+import type { MoviesData } from "../model/type";
 import { CategoryMovie } from "../components/CategoryMovie";
+import Footer from "../components/Footer";
+import Floating from "../components/Floating";
+import ServiceCardList from "../components/ServiceCardList";
+import LayoutMovie from "../components/LayoutMovie";
 
 function Homepage() {
   const [movies, setMovies] = React.useState<MoviesData>({
@@ -35,7 +38,6 @@ function Homepage() {
       console.error("Fetch failed:", error);
     }
   };
-  console.log(movies.upcoming);
   useEffect(() => {
     fetchData();
   }, []);
@@ -44,7 +46,16 @@ function Homepage() {
     <>
       <Header />
       <Hero data={movies.upcoming} />
-      <CategoryMovie title="Upcoming" data={movies.upcoming} />
+      <main>
+        <CategoryMovie title="Mới trên NetFlix" data={movies.upcoming} />
+        <CategoryMovie title="Phổ biến" data={movies.popular} />
+        <CategoryMovie title="Xếp hạng hàng đầu" data={movies.topRated} />
+        <CategoryMovie title="Đang chiếu" data={movies.nowPlaying} />
+        <ServiceCardList title="Gói dịch vụ đáp ứng nhu cầu của bạn" />
+        <LayoutMovie />
+      </main>
+      <Floating />
+      <Footer />
     </>
   );
 }

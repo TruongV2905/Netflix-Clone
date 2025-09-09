@@ -20,3 +20,7 @@ export type MoviesData = {
   topRated: Movie[];
   nowPlaying: Movie[];
 };
+export type Genre = {
+  id: number;
+  name: string;
+};
