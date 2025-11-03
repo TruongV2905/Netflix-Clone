@@ -39,7 +39,7 @@ const servicePlans = [
 
 const ServiceCardList = ({ title }: { title?: string }) => {
   return (
-    <div className="max-w-[1250px] mx-auto mb-[30px] px-4 py-10">
+    <section className="max-w-[1250px] mx-auto mb-[30px] px-4 py-10">
       <h2 className="text-3xl font-[1000] text-white mb-3">{title}</h2>
       <div className="flex gap-2 flex-wrap justify-between">
         {servicePlans.map((service, index) => (
@@ -52,7 +52,7 @@ const ServiceCardList = ({ title }: { title?: string }) => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

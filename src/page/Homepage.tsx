@@ -16,6 +16,11 @@ function Homepage() {
     topRated: [],
     nowPlaying: [],
   });
+
+  useEffect(() => {
+    // scroll sau 50ms để DOM render xong
+    setTimeout(() => window.scrollTo(0, 0), 50);
+  }, []);
   const fetchData = async () => {
     try {
       const endpoints = [
@@ -41,12 +46,11 @@ function Homepage() {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <>
       <Header />
       <Hero data={movies.upcoming} />
-      <main>
+      <main className="w-full min-h-screen">
         <CategoryMovie title="Mới trên NetFlix" data={movies.upcoming} />
         <CategoryMovie title="Phổ biến" data={movies.popular} />
         <CategoryMovie title="Xếp hạng hàng đầu" data={movies.topRated} />

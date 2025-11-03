@@ -7,7 +7,10 @@ import Floating from "../components/Floating";
 import LayoutMovie from "../components/LayoutMovie";
 import BackGround from "../components/BackGround";
 import ServiceCardList from "../components/ServiceCardList";
-
+import PosterCard from "../components/PosterCard";
+import TopCastList from "../components/TopcastList";
+import VideoList from "../components/VideoList";
+import { CategoryMovie } from "../components/CategoryMovie";
 function MoviePage() {
   const { id } = useParams();
 
@@ -44,16 +47,53 @@ function MoviePage() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData();
-  }, []);
-  console.log(data.detail);
+  }, [id]);
+  console.log(data.credit);
+  useEffect(() => {
+    // scroll sau 50ms để DOM render xong
+    setTimeout(() => window.scrollTo(0, 0), 50);
+  }, [id]);
+  console.log(data.similar);
   return (
     <>
       <Header />
       <BackGround image={data.detail.backdrop_path} />
-      <main>
+      <main className="w-full min-h-screen">
+        <PosterCard
+          image={data.detail.poster_path}
+          overview={data.detail.overview}
+          title={data.detail.title}
+          genres={data.detail.genres}
+          tagline={data.detail.tagline}
+          vote_average={data.detail.vote_average}
+          status={data.detail.status}
+          date={data.detail.release_date}
+          runtime={data.detail.runtime}
+          vote_count={data.detail.vote_count}
+          spoken_languages={data.detail.spoken_languages}
+          production_companies={data.detail.production_companies}
+          production_countries={data.detail.production_countries}
+        />
+        {data.credit.length > 0 && <TopCastList casts={data.credit} />}
+        {data.video.length > 0 && <VideoList videos={data.video} />}
+        {data.similar.length > 0 && (
+          <CategoryMovie
+            overlay={false}
+            title="Phim tương tự"
+            data={data.similar}
+          />
+        )}
+        {data.recomendations.length > 0 && (
+          <CategoryMovie
+            overlay={false}
+            title="Phim đề xuất"
+            data={data.recomendations}
+          />
+        )}
         <ServiceCardList title="Gói dịch vụ đáp ứng nhu cầu của bạn" />
+
         <LayoutMovie />
       </main>
       <Floating />

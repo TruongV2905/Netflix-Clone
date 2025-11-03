@@ -18,7 +18,7 @@ function Floating() {
   }, []);
 
   return (
-    <div
+    <section
       className={`w-full sticky left-0 bottom-0 h-[15vh] flex justify-center items-center z-100 ${
         !show && "pointer-events-none"
       }`}
@@ -35,7 +35,7 @@ function Floating() {
         ${show ? " translate-y-0" : "translate-y-50"}
       `}
       ></div>
-    </div>
+    </section>
   );
 }
 

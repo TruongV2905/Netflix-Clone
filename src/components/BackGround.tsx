@@ -8,7 +8,7 @@ function BackGround({ image }: BackGroundProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative w-full h-[80vh] -z-1">
+    <div className="fixed inset-0 w-full h-[80vh] -z-1">
       {/* skeleton / loading */}
       {!isLoaded && (
         <div className="w-full h-[80vh] mb-2 rounded-xl bg-[#0f0f0f] animate-pulse"></div>
