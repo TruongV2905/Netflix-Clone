@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../config/api";
 import Header from "../components/Header";
@@ -11,10 +11,14 @@ import PosterCard from "../components/PosterCard";
 import TopCastList from "../components/TopcastList";
 import VideoList from "../components/VideoList";
 import { CategoryMovie } from "../components/CategoryMovie";
-function MoviePage() {
-  const { id } = useParams();
+import type { MovieData } from "../model/type";
 
-  const [data, setData] = React.useState({
+// 🧩 Import types
+
+const MoviePage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const [data, setData] = useState<MovieData>({
     detail: {},
     similar: [],
     recomendations: [],
@@ -50,12 +54,11 @@ function MoviePage() {
   useEffect(() => {
     fetchData();
   }, [id]);
-  console.log(data.credit);
+
   useEffect(() => {
-    // scroll sau 50ms để DOM render xong
     setTimeout(() => window.scrollTo(0, 0), 50);
   }, [id]);
-  console.log(data.similar);
+
   return (
     <>
       <Header />
@@ -93,13 +96,12 @@ function MoviePage() {
           />
         )}
         <ServiceCardList title="Gói dịch vụ đáp ứng nhu cầu của bạn" />
-
         <LayoutMovie />
       </main>
       <Floating />
       <Footer />
     </>
   );
-}
+};
 
 export default MoviePage;

@@ -1,7 +1,8 @@
 import React from "react";
 import VideoCard from "./VideoCard";
+import type { Video } from "../model/type";
 
-function VideoList({ videos }: { videos?: any[] }) {
+function VideoList({ videos }: { videos?: Video[] }) {
   return (
     <section className="max-w-[1250px] mx-auto px-4 pt-3 mb-5">
       <h1 className="text-3xl font-[1000] text-white mb-5">Video chính thức</h1>

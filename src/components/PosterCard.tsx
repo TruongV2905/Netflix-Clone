@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { Company, Country, Genre, Language } from "../model/type";
 
 interface MovieCardProps {
   title?: string;
@@ -9,13 +10,13 @@ interface MovieCardProps {
   tagline?: string;
   id?: number;
   overview?: string;
-  genres?: string[];
+  genres?: Genre[];
   status?: string;
   runtime?: number;
   vote_count?: number;
-  spoken_languages?: string[];
-  production_companies?: any[];
-  production_countries?: any[];
+  spoken_languages?: Language[];
+  production_companies?: Company[];
+  production_countries?: Country[];
 }
 function PosterCard({
   title,

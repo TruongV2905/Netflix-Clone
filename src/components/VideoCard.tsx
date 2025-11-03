@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import type { Video } from "../model/type";
 
-function VideoCard({ video }: { video: any }) {
+function VideoCard({ video }: { video: Video }) {
   const [showPlayer, setShowPlayer] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 

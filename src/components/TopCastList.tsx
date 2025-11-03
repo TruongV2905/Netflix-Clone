@@ -1,7 +1,8 @@
 import React from "react";
 import CreditCard from "./CreditCard";
+import type { Cast } from "../model/type";
 
-function TopCastList({ casts }: { casts?: any[] }) {
+function TopCastList({ casts }: { casts?: Cast[] }) {
   return (
     <section className="max-w-[1250px] mx-auto px-4 pt-10">
       <h1 className="text-3xl font-[1000] text-white mb-3">

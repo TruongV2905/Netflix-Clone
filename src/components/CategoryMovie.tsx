@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import type { Genre, Movie } from "../model/type";
+import type { Movie } from "../model/type";
 import Carousel from "./Carousel";
 import MovieCard from "./MovieCard";
 
