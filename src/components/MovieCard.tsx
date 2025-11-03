@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import type { Genre } from "../model/type";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   title?: string;
   img?: string;
-  date?: string;
+  date?: string | number | Date;
   vote_average?: number;
   id?: number;
 }
@@ -13,7 +12,7 @@ interface MovieCardProps {
 function MovieCard({ title, img, date, vote_average, id }: MovieCardProps) {
   const [loaded, setLoaded] = useState(false);
   const nav = useNavigate();
-  const reDate = new Date(date);
+  const reDate = date ? new Date(date) : null;
 
   const months = [
     "January",
@@ -30,9 +29,12 @@ function MovieCard({ title, img, date, vote_average, id }: MovieCardProps) {
     "December",
   ];
 
-  const formatted = `${months[reDate.getMonth()]} ${String(
-    reDate.getDate()
-  ).padStart(2, "0")}, ${reDate.getFullYear()}`;
+  const formatted = reDate
+    ? `${months[reDate.getMonth()]} ${String(reDate.getDate()).padStart(
+        2,
+        "0"
+      )}, ${reDate.getFullYear()}`
+    : "Unknown date";
 
   return (
     <div

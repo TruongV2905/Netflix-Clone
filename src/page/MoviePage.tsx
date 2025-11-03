@@ -8,10 +8,10 @@ import LayoutMovie from "../components/LayoutMovie";
 import BackGround from "../components/BackGround";
 import ServiceCardList from "../components/ServiceCardList";
 import PosterCard from "../components/PosterCard";
-import TopCastList from "../components/TopcastList";
 import VideoList from "../components/VideoList";
 import { CategoryMovie } from "../components/CategoryMovie";
 import type { MovieData } from "../model/type";
+import CastList from "../components/CastList";
 
 // 🧩 Import types
 
@@ -79,7 +79,7 @@ const MoviePage: React.FC = () => {
           production_companies={data.detail.production_companies}
           production_countries={data.detail.production_countries}
         />
-        {data.credit.length > 0 && <TopCastList casts={data.credit} />}
+        {data.credit.length > 0 && <CastList casts={data.credit} />}
         {data.video.length > 0 && <VideoList videos={data.video} />}
         {data.similar.length > 0 && (
           <CategoryMovie

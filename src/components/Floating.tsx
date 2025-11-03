@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Floating() {
   const [show, setShow] = useState(false);
-  const [bottomOffset, setBottomOffset] = useState(20);
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;

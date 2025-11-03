@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Video } from "../model/type";
 
 function VideoCard({ video }: { video: Video }) {

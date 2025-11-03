@@ -24,12 +24,6 @@ export type Genre = {
   id: number;
   name: string;
 };
-// ==== Movie related types ====
-
-export interface Genre {
-  id: number;
-  name: string;
-}
 
 export interface Language {
   name: string;

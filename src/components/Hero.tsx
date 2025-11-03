@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Carousel from "./Carousel";
 import type { Movie } from "../model/type";
 

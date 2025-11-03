@@ -40,7 +40,7 @@ function Carousel({
   breakpoints,
   ...swiperProps
 }: CarouselProps) {
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const remainder = slides.length % slidesPerView;

@@ -1,4 +1,3 @@
-import React from "react";
 import { BsAlignTop } from "react-icons/bs";
 
 function LayoutMovie() {
